@@ -262,13 +262,13 @@ if run_pattern:
                 st.markdown(
     f"""
     <div style="
-        background: #ecfeff;
+        background: #0F52BA;
         border: 1px solid #bae6fd;
         border-radius: 12px;
         padding: 16px 18px;
         font-size: 1.3rem;
         line-height: 1.6;
-        color: #0F52BA;
+        color: #FFFFFF;
         margin-bottom: 12px;
     ">
         {result.summary}
