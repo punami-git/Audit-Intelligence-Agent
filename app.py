@@ -266,7 +266,7 @@ if run_pattern:
         border: 1px solid #bae6fd;
         border-radius: 12px;
         padding: 16px 18px;
-        font-size: 1.05rem;
+        font-size: 1.5rem;
         line-height: 1.6;
         color: #0f172a;
         margin-bottom: 12px;
