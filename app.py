@@ -117,6 +117,27 @@ def apply_styles() -> None:
             font-size: 0.88rem;
         }
 
+        .dataset-heading {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--ink);
+            margin: 6px 0 6px 0;
+        }
+
+        div[data-baseweb="tab-list"] {
+            gap: 0.2rem;
+        }
+
+        button[data-baseweb="tab"] {
+            font-size: 0.78rem;
+            padding: 0.35rem 0.65rem;
+        }
+
+        div[data-testid="stDataFrame"] [role="columnheader"],
+        div[data-testid="stDataFrame"] [role="gridcell"] {
+            font-size: 0.78rem;
+        }
+
         div[data-testid="stMetric"] {
             background: rgba(255, 255, 255, 0.8);
             border: 1px solid var(--border);
@@ -199,15 +220,15 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.subheader("Mock Datasets")
+st.markdown('<div class="dataset-heading">Mock Datasets</div>', unsafe_allow_html=True)
 
 table_tabs = st.tabs(["Control Failures", "Audit Findings", "Risky Transactions"])
 with table_tabs[0]:
-    st.dataframe(control_df, width="stretch", height=320)
+    st.dataframe(control_df, width="stretch", height=220)
 with table_tabs[1]:
-    st.dataframe(findings_df, width="stretch", height=320)
+    st.dataframe(findings_df, width="stretch", height=220)
 with table_tabs[2]:
-    st.dataframe(risky_df, width="stretch", height=320)
+    st.dataframe(risky_df, width="stretch", height=220)
 
 st.subheader("Ask a Question in Natural Language")
 example_questions = [
