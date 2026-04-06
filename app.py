@@ -259,7 +259,23 @@ if run_pattern:
                 st.exception(exc)
             else:
                 st.markdown("### Summary of Findings")
-                st.success(result.summary)
+                st.markdown(
+    f"""
+    <div style="
+        background: #ecfeff;
+        border: 1px solid #bae6fd;
+        border-radius: 12px;
+        padding: 16px 18px;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #0f172a;
+        margin-bottom: 12px;
+    ">
+        {result.summary}
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
                 st.markdown("### Findings")
                 render_pattern_cards(result.patterns)
