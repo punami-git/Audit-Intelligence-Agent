@@ -178,10 +178,8 @@ risky_df = load_table("risky_transactions")
 st.markdown(
     """
     <div class="hero">
-      <div class="pill">Multi-Agent AI System</div>
-      <div class="pill">LangGraph + LangChain</div>
-      <div class="pill">Mistral + Tool Calling</div>
-      <h1>Audit Intelligence Agent</h1>
+      
+      <h2>Audit Intelligence Agent</h2>
       <div class="hero-copy">
         <p style="margin:0 0 16px 0;">
           This tool analyzes control failures and past audit findings to identify recurring issues and flag weak controls.
