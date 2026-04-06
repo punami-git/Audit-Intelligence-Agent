@@ -1,17 +1,24 @@
-import html
 import os
 import sqlite3
+import sys
 from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
 
 import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
 from streamlit.errors import StreamlitSecretNotFoundError
 
-from src.audit_pattern_agent import AuditPatternDetectionAgent
-from src.audit_pattern_data import seed_audit_pattern_db
+try:
+    from src.audit_pattern_agent import AuditPatternDetectionAgent
+    from src.audit_pattern_data import seed_audit_pattern_db
+except ModuleNotFoundError:
+    from audit_pattern_agent import AuditPatternDetectionAgent
+    from audit_pattern_data import seed_audit_pattern_db
 
-BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "audit_patterns_mock.db"
 TABLES = ["control_failures", "audit_findings", "risky_transactions"]
 
@@ -41,11 +48,6 @@ def apply_styles() -> None:
 
         html, body, [class*="css"] {
             font-family: 'Manrope', sans-serif;
-            font-size: 18px;
-        }
-
-        h2, h3 {
-            font-size: 2rem !important;
         }
 
         .stApp {
@@ -78,13 +80,13 @@ def apply_styles() -> None:
         }
 
         .hero h1 {
-            font-size: 3.4rem;
+            font-size: 3rem;
             line-height: 1.05;
             margin: 14px 0 16px 0;
         }
 
         .hero-copy {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             line-height: 1.7;
             max-width: 980px;
         }
@@ -96,7 +98,7 @@ def apply_styles() -> None:
 
         .hero-list li {
             margin-bottom: 12px;
-            font-size: 1.18rem;
+            font-size: 1.05rem;
         }
 
         .pattern-card {
@@ -105,14 +107,14 @@ def apply_styles() -> None:
             border-radius: 12px;
             padding: 18px 20px;
             margin-bottom: 14px;
-            font-size: 1.18rem;
+            font-size: 1.02rem;
         }
 
         .pattern-title {
             font-weight: 800;
             color: var(--ink);
             margin-bottom: 8px;
-            font-size: 1.32rem;
+            font-size: 1.12rem;
         }
 
         div[data-testid="stMetric"] {
@@ -124,47 +126,7 @@ def apply_styles() -> None:
 
         div[data-testid="stMetric"] label,
         div[data-testid="stMetric"] div {
-            font-size: 1.15rem;
-        }
-
-        .stButton > button {
-            font-size: 1.18rem;
-            font-weight: 700;
-            padding: 0.85rem 1.35rem;
-            border-radius: 14px;
-        }
-
-        .stTextArea label,
-        .stMarkdown p,
-        .stMarkdown li,
-        .stCode,
-        code {
-            font-size: 1.12rem !important;
-        }
-
-        .stTextArea textarea {
-            font-size: 1.12rem !important;
-            line-height: 1.6;
-        }
-
-        .stTabs [data-baseweb="tab"] {
-            font-size: 1.08rem;
-            font-weight: 700;
-            height: 56px;
-        }
-
-        .summary-card {
-            background: rgba(240, 249, 255, 0.95);
-            border: 1px solid rgba(14, 165, 233, 0.22);
-            border-left: 6px solid var(--sky);
-            border-radius: 18px;
-            padding: 24px 26px;
-            margin-bottom: 18px;
-            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
-            color: var(--ink);
-            font-size: 2rem;
-            line-height: 1.55;
-            font-weight: 600;
+            font-size: 1.02rem;
         }
         </style>
         """,
@@ -276,11 +238,7 @@ if run_pattern:
                 st.exception(exc)
             else:
                 st.markdown("### Summary of Findings")
-                summary_html = html.escape(result.summary or "No summary generated.").replace("\n", "<br>")
-                st.markdown(
-                    f'<div class="summary-card">{summary_html}</div>',
-                    unsafe_allow_html=True,
-                )
+                st.success(result.summary)
 
                 st.markdown("### Findings")
                 render_pattern_cards(result.patterns)
