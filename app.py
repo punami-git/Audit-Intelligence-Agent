@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import sys
+from html import escape
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -89,6 +90,17 @@ def apply_styles() -> None:
             font-size: 0.84rem;
             line-height: 1.42;
             max-width: 980px;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 48%, #0891b2 100%);
+            color: white;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin: 8px 0 12px 0;
+            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+            font-size: 0.9rem;
+            line-height: 1.55;
         }
 
         .hero-list {
@@ -258,24 +270,16 @@ if run_pattern:
             except Exception as exc:
                 st.exception(exc)
             else:
+                summary_html = escape(result.summary).replace("\n", "<br>")
                 st.markdown("### Summary of Findings")
                 st.markdown(
-    f"""
-    <div style="
-        background: #0F52BA;
-        border: 1px solid #bae6fd;
-        border-radius: 12px;
-        padding: 16px 18px;
-        font-size: 1.3rem;
-        line-height: 1.6;
-        color: #FFFFFF;
-        margin-bottom: 12px;
-    ">
-        {result.summary}
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+                    f"""
+                    <div class="summary-box">
+                      {summary_html}
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
 
                 st.markdown("### Findings")
                 render_pattern_cards(result.patterns)
