@@ -60,73 +60,73 @@ def apply_styles() -> None:
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 48%, #0891b2 100%);
             color: white;
-            border-radius: 18px;
-            padding: 24px 28px;
-            margin-bottom: 18px;
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
             box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
         }
 
         .pill {
             display: inline-block;
-            padding: 9px 14px;
+            padding: 7px 11px;
             margin-right: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.14);
             border: 1px solid rgba(255, 255, 255, 0.18);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.25px;
         }
 
         .hero h1, .hero h2 {
-            font-size: 2.35rem;
+            font-size: 2rem;
             line-height: 1.05;
-            margin: 8px 0 12px 0;
+            margin: 6px 0 10px 0;
         }
 
         .hero-copy {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 0.92rem;
+            line-height: 1.5;
             max-width: 980px;
         }
 
         .hero-list {
-            margin: 18px 0 0 0;
-            padding-left: 22px;
+            margin: 12px 0 0 0;
+            padding-left: 18px;
         }
 
         .hero-list li {
-            margin-bottom: 10px;
-            font-size: 0.98rem;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
 
         .pattern-card {
             background: rgba(255, 255, 255, 0.92);
             border-left: 4px solid var(--sky);
             border-radius: 12px;
-            padding: 18px 20px;
-            margin-bottom: 14px;
-            font-size: 0.96rem;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
         }
 
         .pattern-title {
             font-weight: 800;
             color: var(--ink);
-            margin-bottom: 8px;
-            font-size: 1.02rem;
+            margin-bottom: 6px;
+            font-size: 0.96rem;
         }
 
         div[data-testid="stMetric"] {
             background: rgba(255, 255, 255, 0.8);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 18px 18px 14px 18px;
+            padding: 14px 14px 12px 14px;
         }
 
         div[data-testid="stMetric"] label,
         div[data-testid="stMetric"] div {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         </style>
         """,
