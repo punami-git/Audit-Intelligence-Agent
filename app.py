@@ -60,9 +60,9 @@ def apply_styles() -> None:
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 48%, #0891b2 100%);
             color: white;
-            border-radius: 22px;
-            padding: 34px 38px;
-            margin-bottom: 24px;
+            border-radius: 18px;
+            padding: 24px 28px;
+            margin-bottom: 18px;
             box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
         }
 
@@ -74,20 +74,20 @@ def apply_styles() -> None:
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.14);
             border: 1px solid rgba(255, 255, 255, 0.18);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             letter-spacing: 0.25px;
         }
 
-        .hero h1 {
-            font-size: 3rem;
+        .hero h1, .hero h2 {
+            font-size: 2.35rem;
             line-height: 1.05;
-            margin: 14px 0 16px 0;
+            margin: 8px 0 12px 0;
         }
 
         .hero-copy {
-            font-size: 1.1rem;
-            line-height: 1.7;
+            font-size: 1rem;
+            line-height: 1.6;
             max-width: 980px;
         }
 
@@ -97,8 +97,8 @@ def apply_styles() -> None:
         }
 
         .hero-list li {
-            margin-bottom: 12px;
-            font-size: 1.05rem;
+            margin-bottom: 10px;
+            font-size: 0.98rem;
         }
 
         .pattern-card {
@@ -107,14 +107,14 @@ def apply_styles() -> None:
             border-radius: 12px;
             padding: 18px 20px;
             margin-bottom: 14px;
-            font-size: 1.02rem;
+            font-size: 0.96rem;
         }
 
         .pattern-title {
             font-weight: 800;
             color: var(--ink);
             margin-bottom: 8px;
-            font-size: 1.12rem;
+            font-size: 1.02rem;
         }
 
         div[data-testid="stMetric"] {
@@ -126,7 +126,7 @@ def apply_styles() -> None:
 
         div[data-testid="stMetric"] label,
         div[data-testid="stMetric"] div {
-            font-size: 1.02rem;
+            font-size: 0.95rem;
         }
         </style>
         """,
@@ -178,8 +178,10 @@ risky_df = load_table("risky_transactions")
 st.markdown(
     """
     <div class="hero">
-      
-      <h2>Audit Intelligence Agent</h2>
+      <div class="pill">Multi-Agent AI System</div>
+      <div class="pill">LangGraph + LangChain</div>
+      <div class="pill">Mistral + Tool Calling</div>
+      <h1>Audit Intelligence Agent</h1>
       <div class="hero-copy">
         <p style="margin:0 0 16px 0;">
           This tool analyzes control failures and past audit findings to identify recurring issues and flag weak controls.
