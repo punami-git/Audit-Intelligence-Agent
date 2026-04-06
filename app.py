@@ -1,4 +1,5 @@
 import os
+import re
 import sqlite3
 import sys
 from html import escape
@@ -99,8 +100,8 @@ def apply_styles() -> None:
             padding: 14px 18px;
             margin: 8px 0 12px 0;
             box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
-            font-size: 0.9rem;
-            line-height: 1.55;
+            font-size: 1.05rem;
+            line-height: 1.65;
         }
 
         .hero-list {
@@ -119,14 +120,15 @@ def apply_styles() -> None:
             border-radius: 12px;
             padding: 12px 14px;
             margin-bottom: 10px;
-            font-size: 0.84rem;
+            font-size: 0.95rem;
+            line-height: 1.55;
         }
 
         .pattern-title {
             font-weight: 800;
             color: var(--ink);
             margin-bottom: 5px;
-            font-size: 0.88rem;
+            font-size: 1rem;
         }
 
         .dataset-heading {
@@ -177,17 +179,25 @@ def load_mistral_key_from_secrets() -> None:
         os.environ["MISTRAL_API_KEY"] = secret_key
 
 
+def format_display_text(text: str) -> str:
+    safe_text = escape(text)
+    safe_text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", safe_text)
+    return safe_text.replace("\n", "<br>")
+
+
 def render_pattern_cards(patterns: list[dict[str, str]]) -> None:
     if not patterns:
         st.info("No strong recurring pattern was detected from the supporting evidence tables.")
         return
 
     for pattern in patterns:
+        pattern_title = format_display_text(pattern["pattern"])
+        pattern_detail = format_display_text(pattern["detail"])
         st.markdown(
             f"""
             <div class="pattern-card">
-              <div class="pattern-title">{pattern['pattern']}</div>
-              <div>{pattern['detail']}</div>
+              <div class="pattern-title">{pattern_title}</div>
+              <div>{pattern_detail}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -270,7 +280,7 @@ if run_pattern:
             except Exception as exc:
                 st.exception(exc)
             else:
-                summary_html = escape(result.summary).replace("\n", "<br>")
+                summary_html = format_display_text(result.summary)
                 st.markdown("### Summary of Findings")
                 st.markdown(
                     f"""
