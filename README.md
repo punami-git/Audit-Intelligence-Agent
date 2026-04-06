@@ -5,6 +5,9 @@ This project is a Streamlit app for pattern detection over mock audit style tabl
 - a second LangGraph pattern workflow to detect recurring themes across narrative issue text
 - Mistral to generate SQL and write the final plain English summary
 
+# Streamlit App
+https://audit-intelligence-agent.streamlit.app/
+
 ## Tech Stack
 - Streamlit
 - SQLite
